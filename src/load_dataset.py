@@ -1,2 +1,9 @@
 from datasets import load_dataset
-datasets = load_dataset("sohamb37lexsi/bitext-retail-banking-llm-chatbot-splits")
+from config import DATASET_NAME
+
+def get_dataset():
+    dataset = load_dataset(DATASET_NAME)
+    return dataset
+
+ex = get_dataset()
+print (ex)
