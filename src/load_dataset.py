@@ -1,2 +1,2 @@
-from datasets import load_datasets
-datasets = load_datasets("sohamb37lexsi/bitext-retail-banking-llm-chatbot-splits")
+from datasets import load_dataset
+datasets = load_dataset("sohamb37lexsi/bitext-retail-banking-llm-chatbot-splits")
