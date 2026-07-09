@@ -3,7 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.x-red)
 ![Transformers](https://img.shields.io/badge/HuggingFace-Transformers-yellow)
-![License](https://img.shields.io/badge/License-MIT-green)
+![License](https://img.shields.io/badge/License-Apache%202.0-green)
 
 ## Project Overview
 
