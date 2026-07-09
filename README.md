@@ -115,6 +115,65 @@ Evaluation outputs are saved as:
 
 ---
 
+## Challenges and Solutions
+
+### 1. Long Inference Time on the Test Dataset
+
+### Challenge
+
+Running inference on the complete test dataset (2,555 samples) took significantly longer than expected.
+
+Each sample required the model to generate a response individually, resulting in a long evaluation runtime on local hardware.
+
+### Solution
+
+Implemented progress tracking during inference and saved all generated responses after completing the evaluation run.
+
+The inference pipeline was separated from the evaluation pipeline, allowing generated responses to be reused without repeatedly running model generation.
+
+Future improvements include:
+
+- GPU acceleration
+- Batched inference
+- Optimized generation parameters
+
+---
+
+### 2. Memory Limitations During BERTScore Evaluation
+
+### Challenge
+
+Evaluating the complete dataset with BERTScore initially caused the process to terminate.
+
+BERTScore requires loading an additional pretrained evaluation model (`RoBERTa-large`) to generate contextual embeddings for both predictions and reference responses. Running the entire dataset at once exceeded available memory resources.
+
+### Solution
+
+Implemented batched BERTScore evaluation.
+
+Instead of processing all 2,555 samples simultaneously, predictions were divided into smaller batches:
+
+```
+Predictions
+    |
+    ↓
+Batch 1 (25 samples)
+    |
+    ↓
+RoBERTa-large embeddings
+
+Batch 2 (25 samples)
+    |
+    ↓
+RoBERTa-large embeddings
+
+...
+```
+
+The BERTScore evaluator was loaded once and reused across batches, reducing memory usage while maintaining evaluation consistency.
+
+---
+
 ## Future Improvements
 
 Potential improvements include:
